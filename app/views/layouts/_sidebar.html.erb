@@ -1,0 +1,31 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+<ul class="nav sidebar-nav">
+    <li class="sidebar-brand">
+      <%= link_to "Sign Out", destroy_admin_session_path, :method => :delete %>
+    </li>
+    <li>
+      <a href="<%= root_path %>">Guitars</a>
+    </li>    
+    <li>
+      <a href="<%= accessories_path %>">Accessories</a>
+    </li>
+    <li>
+      <a href="<%= picks_path  %>">Picks</a>
+    </li>            
+    <li>
+      <a href="<%= straps_path %>">Straps</a>
+    </li>                                                
+    <li>
+      <a href="<%= brands_path %>">Brands</a>
+    </li>
+    <li>
+      <a href="<%= categories_path %>">Categories</a>
+    </li>
+    <li>
+      <a href="<%= track_product_path %>">Product Track</a>
+    </li>    
+    <li>
+      <a href="<%= order_history_path %>">Orders History</a>
+    </li>        
+</ul>
+</nav>

@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+<%= link_to 'Add to Cart', add_to_cart_path("accessory",@accessory.id),{:method => :post, :remote => true ,:class => "pull-right"} %>
+<p>
+  <strong>Name:</strong>
+  <%= @accessory.name %>
+</p>
+<p>
+  <strong>Unit price:</strong>
+  &cent;<%= @accessory.unit_price %>
+</p>
+<% if !@accessory.pick.blank? %>
+  <p>
+    <strong>Pick:</strong>
+    <%= @accessory.pick.name %>
+  </p>
+<% end %>  
+<% if !@accessory.strap.blank? %>
+  <p>
+    <strong>Strap:</strong>
+    <%= @accessory.strap.name %>
+  </p>
+<% end %>  
+<p>
+  <strong>Brand:</strong>
+  <%= @accessory.brand.name %>
+</p>
+<p>
+  <strong>Purchased at:</strong>
+  <%= @accessory.purchased_at.strftime("%B %d, %Y") %>
+</p>
+<%= link_to 'Edit', edit_accessory_path(@accessory),:class => "btn btn-primary" %> |
+<%= link_to 'Back', accessories_path,:class => "btn btn-primary" %>

@@ -1,0 +1,32 @@
+<div class="page-header">
+  <div class="text-center"><h3>Categories</h3></div>
+  <%= link_to 'New Category', new_category_path,:class => "btn btn-primary" %>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <p id="notice"><%= notice %></p>
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Parent Category</th>
+              <th colspan="3">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @categories.each do |category| %>
+              <tr>
+                <td><%= category.name %></td>
+                <td><%= category.parent_cat_name %></td>
+                <td><%= link_to 'Show', category %></td>
+                <td><%= link_to 'Edit', edit_category_path(category) %></td>
+                <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure you want to delete this record? If yes, then it will also delete its associated guitars and accessories.' } %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+  </div>
+</div>

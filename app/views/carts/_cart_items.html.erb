@@ -1,0 +1,79 @@
+<% if @cart.cart_items.count > 0 %>
+	<h2 class="text-center">MY CART (<%= @cart.cart_items.count %>): &cent;<%= (@cart.total_amount).round(0) %></h2>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table table-hover">
+		<tbody>
+			<tr>
+				<th width="40%">Product</th>
+				<th width="10%" style="text-align: center">Price</th>
+				<th width="20%" style="text-align: center">Quantity</th>
+				<th width="10%" style="text-align: center">Total Cost</th>
+				<th width="10%"></th>
+			</tr>
+			<% @cart.cart_items.order("id asc").each do |lineitem|%>
+				<% if !lineitem.guitar_id.blank? %>
+					<tr>
+						<td>
+							<div class="row">
+								<div class="col-md-10">
+									<a href="<%= guitar_path(lineitem.guitar) %>"><%= lineitem.guitar.name %></a>
+								</div>
+							</div>
+						</td>
+						<td align="center">&cent;<span id="productprice_<%=lineitem.id%>"><%= (lineitem.guitar.unit_price) %> </span></td>
+						<td align="center">
+							<span id="productquantity_<%=lineitem.id%>">
+								<%= link_to lineitem.quantity,edit_cartitem_path(:id => lineitem.id),:remote => true,:class => "btn btn-link" %>		
+							</span>
+						</td>
+						<td align="center" id="producttotal_<%=lineitem.id %>">
+							&cent;<%= (lineitem.sub_total) %>
+						</td>
+						
+						<td align="center"><%= button_to "X", delete_cart_item_path(lineitem.id), method: :delete, :remote => true, data: { confirm: 'Are you sure you want to remove this product from cart?' }, :class => "btn btn-danger btn-sm" %></td>
+					</tr>
+				<% elsif !lineitem.accessory_id.blank? %>
+					<tr>
+						<td>
+							<div class="row">
+								<div class="col-md-10">
+									<a href="<%= accessory_path(lineitem.accessory) %>"><%= lineitem.accessory.name %></a>	
+								</div>
+							</div>
+						</td>
+						<td align="center">&cent;<span id="productprice_<%=lineitem.id%>"><%= (lineitem.accessory.unit_price) %> </span></td>
+						<td align="center">
+							<span id="productquantity_<%=lineitem.id%>">
+								<%= link_to lineitem.quantity,edit_cartitem_path(:id => lineitem.id),:remote => true,:class => "btn btn-link" %>		
+							</span>
+						</td>
+						<td align="center" id="producttotal_<%=lineitem.id %>">
+							&cent;<%= (lineitem.sub_total) %>
+						</td>
+						
+						<td align="center"><%= button_to "X", delete_cart_item_path(lineitem.id), method: :delete, :remote => true, data: { confirm: 'Are you sure you want to remove this product from cart?' }, :class => "btn btn-danger btn-sm" %></td>
+					</tr>					
+				<% end %>	
+			<% end %>
+			<tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td align="right">Total Price:</td>
+				<td align="center"><b id="masterTotal">&cent;<%= (@cart.total_amount) %></b></td>
+				<td>&nbsp;</td>
+			</tr>
+		</tbody>
+	</table>	
+	<hr>
+	<div class="row">
+		<div class="col-sm-12">
+			<%= link_to "Place Order", place_order_path, method: :get, :remote => true, :class => "btn btn-success btn-lg" %>
+		</div>
+	</div><br />
+	<div class="row text-center">
+		<div  id="div_place_order_form">
+			
+		</div>
+	</div>	
+<% else %>
+	Your Shopping Cart is empty !
+<% end %>

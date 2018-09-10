@@ -1,0 +1,31 @@
+<div class="page-header">
+  <div class="text-center"><h3>Product Tracking</h3></div>
+</div>
+<div class="row">
+    <% if @order_items.count > 0 %>
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>Name</th>
+			  <th>Purchased at</th>	              
+			  <th>Sold at</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @order_items.each do |item| %>
+              <tr>
+              	<td><%= item.prod_name %></td>
+              	<td><%= item.purchased_at %></td>
+              	<td><%= item.created_at.strftime("%B %d, %Y") %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <%= will_paginate @order_items,:class => "digg_pagination" %>
+    <% else %>
+      <h4>Records not found</h4>
+    <% end %>  
+  </div>
+</div>

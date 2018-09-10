@@ -1,0 +1,23 @@
+<%= form_with(model: category, local: true,:class => "form-horizontal") do |form| %>
+  <% if category.errors.any? %>
+    <%= render :partial => "layouts/model_message",:locals => {:modelObj => category} %>
+  <% end %>
+  <div class="form-group">
+    <%= form.label :name,:class => "control-label col-sm-2" %>
+    <div class="col-sm-8">
+      <%= form.text_field :name,:class => "form-control" %>
+    </div>  
+  </div>
+  <div class="form-group">
+    <%= form.label "Parent Category",:class => "control-label col-sm-2" %>
+    <div class="col-sm-8">
+      <%= form.select :parent_id,Category.parentcat.collect {|c| [c.name,c.id]},{:include_blank => "Select Category"},:class => "form-control"%>
+    </div>  
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= form.submit "Submit",:class => "btn btn-primary" %>
+    </div>  
+  </div>
+<% end %>

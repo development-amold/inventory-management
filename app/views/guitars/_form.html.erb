@@ -1,0 +1,47 @@
+<%= form_with(model: guitar, local: true,:class => "form-horizontal") do |form| %>
+  <% if guitar.errors.any? %>
+    <%= render :partial => "layouts/model_message",:locals => {:modelObj => guitar} %>
+  <% end %>
+  <div class="form-group">
+    <%= form.label :name,:class => "control-label col-sm-2" %>
+    <div class="col-sm-8">
+      <%= form.text_field :name,:class => "form-control" %>
+    </div>  
+  </div>
+  <div class="form-group">
+    <%= form.label :unit_price,:class => "control-label col-sm-2" %>
+    <div class="col-sm-8">
+      <%= form.text_field :unit_price,:class => "form-control",:placeholder => "Price must be less than 999999.99" %>
+    </div>  
+  </div>
+  <div class="form-group">
+    <%= form.label :brand_id,:class => "control-label col-sm-2" %>
+    <div class="col-sm-8">
+      <%= form.select :brand_id, Brand.all.collect {|b| [b.name,b.id]},{:include_blank => "Select Brand"},:class => "form-control" %>
+    </div>  
+  </div>  
+  <div class="form-group">
+    <%= form.label :category_id,:class => "control-label col-sm-2" %>
+    <div class="col-sm-8">
+      <%= form.select :category_id, Category.parentcat.collect {|c| [c.name,c.id]},{:include_blank => "Select Category"},:class => "form-control" %>
+    </div>  
+  </div>    
+
+  <div class="form-group">
+    <%= form.label "Number of strings",:class => "control-label col-sm-2" %>
+    <div class="col-sm-8">
+      <%= form.number_field :stringscount,:class => "form-control" %>
+    </div>  
+  </div>
+  <div class="form-group">
+    <%= form.label :purchased_at,:class => "control-label col-sm-2" %>
+    <div class="col-sm-8">
+      <%= form.date_select :purchased_at,{},:class => "form-control" %>
+    </div>  
+  </div> 
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= form.submit "Submit",:class => "btn btn-primary" %>
+    </div>  
+  </div>
+<% end %>

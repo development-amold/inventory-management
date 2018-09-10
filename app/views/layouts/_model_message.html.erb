@@ -1,0 +1,7 @@
+<div class="alert alert-success alert-dismissable">
+	<i class="fa fa-check"></i>
+	<button data-dismiss="alert" class="close" type="button">x</button>
+	<% modelObj.errors.full_messages.each do |message| %>
+		<b><%= message %></b><br />
+	<% end %>	
+</div>

@@ -1,0 +1,60 @@
+<div class="page-header">
+  <div class="text-center"><h3>Guitars</h3></div>
+  <%= link_to 'Add New Guitar', new_guitar_path,:class => "btn btn-primary" %>
+  <%= link_to 'Add Accessories to Cart', accessories_path,:target => "_blank",:class => "pull-right" %>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <%= form_tag guitars_path,:method => :get,:id => "search_form" do %>
+      <input class="form-control form-control-lg form-control-borderless" name="q" id="guitar_q" type="search" placeholder="Search guitar by name or brand name" value="<%= params[:q]%>"><br />
+      <%= submit_tag 'Search',name: nil,:class => "btn btn-primary" %>
+    <% end %>
+    <hr>
+    <% if @guitars.count > 0 %>
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>Serial No.</th>
+              <th>Name</th>
+              <th>Brand</th>
+              <th>Category</th>
+              <th>Unit price(&cent;)</th>
+              <th colspan="4">Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @guitars.each do |guitar| %>
+              <tr>
+                <td><%= guitar.usn %></td>
+                <td><%= guitar.name %></td>
+                <td><%= guitar.brand.name %></td>
+                <td><%= guitar.category.name %></td>
+                <td><%= guitar.unit_price %></td>
+                <td><%= link_to 'Add to Cart', add_to_cart_path("guitar",guitar.id),{:method => :post, :remote => true }%></td>
+                <td><%= link_to 'Show', guitar %></td>
+                <td><%= link_to 'Edit', edit_guitar_path(guitar) %></td>
+                <td><%= link_to 'Destroy', guitar, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <%= will_paginate @guitars,:class => "digg_pagination" %>
+    <% else %>
+      <h4>Records not found</h4>
+    <% end %>  
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $("#search_form").submit(function(){
+          if($("#guitar_q").val() == "")
+          {
+            alert("Please enter search keyword")
+            return false;
+          }
+        });
+      })
+    </script>    
+  </div>
+</div>

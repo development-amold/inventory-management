@@ -1,0 +1,30 @@
+<div class="page-header">
+  <div class="text-center"><h3>Straps</h3></div>
+  <%= link_to 'New Strap', new_strap_path,:class => "btn btn-primary" %>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <p id="notice"><%= notice %></p>
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th colspan="3">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @straps.each do |strap| %>
+              <tr>
+                <td><%= strap.name %></td>
+                <td><%= link_to 'Show', strap %></td>
+                <td><%= link_to 'Edit', edit_strap_path(strap) %></td>
+                <td><%= link_to 'Destroy', strap, method: :delete, data: { confirm: 'Are you sure you want to delete this record? If yes, then it will also delete its associated accessories.' } %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+  </div>
+</div>

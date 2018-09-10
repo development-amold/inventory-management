@@ -1,0 +1,37 @@
+<div class="page-header">
+  <div class="text-center"><h3>Order History</h3></div>
+</div>
+<div class="row">
+    <% if @users.count > 0 %>
+      <% @users.each do |user| %>
+        <h3><%= user.email %></h3>
+        <% user.orders.order("id desc").each do |order| %>
+          <ul>
+            <h4><%= order.created_at.strftime("%B %d, %Y %H:%M:%S %Z") %>: <b>&cent;<%= order.order_items.sum(:total_price) %></b></h4>
+            <div class="table-responsive">            
+              <table class="table table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <th>Product Name</th><th>Quantity</th><th>Price(&cent;)</th>
+                  </tr>  
+                </thead>
+                <tbody>
+                  <% order.order_items.each do |item| %>
+                    <tr>
+                      <td><%= item.prod_name %></td>
+                      <td><%= item.quantity %></td>
+                      <td><%= item.total_price %></td>
+                    </tr>    
+                  <% end %>
+                </tbody>
+              </table>  
+            </div>  
+          </ul>
+        <% end %>
+      <% end %>    
+      <%= will_paginate @users,:class => "digg_pagination" %>
+    <% else %>
+      <h4>Records not found</h4>
+    <% end %> 
+  </div>
+</div>

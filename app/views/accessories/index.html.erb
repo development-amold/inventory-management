@@ -1,0 +1,42 @@
+<div class="page-header">
+  <div class="text-center"><h3>Accessories</h3></div>
+  <%= link_to 'New Accessory', new_accessory_path,:class => "btn btn-primary" %>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <p id="notice"><%= notice %></p>
+    <% if @accessories.count > 0 %>
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Unit price(&cent;)</th>              
+              <th>Brand</th>              
+              <th>Type</th>
+              <th colspan="4">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @accessories.each do |accessory| %>
+              <tr>
+                <td><%= accessory.name %></td>
+                <td><%= accessory.unit_price %></td>
+                <td><%= accessory.brand.name %></td>
+                <td><%= accessory.pick_id.blank? ? "Strap" : "Pick" %></td>
+                <td><%= link_to 'Add to Cart', add_to_cart_path("accessory",accessory.id),{:method => :post, :remote => true }%></td>
+                <td><%= link_to 'Show', accessory %></td>
+                <td><%= link_to 'Edit', edit_accessory_path(accessory) %></td>
+                <td><%= link_to 'Destroy', accessory, method: :delete, data: { confirm: 'Are you sure you want to delete the record?' } %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <%= will_paginate @accessories,:class => "digg_pagination" %>
+    <% else %>
+      <h4>Records not found</h4>
+    <% end %>    
+  </div>
+</div>

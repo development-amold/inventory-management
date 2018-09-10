@@ -1,0 +1,1 @@
+$("#productquantity_"+"<%= @cart_item.id %>").html("<%= escape_javascript render(:partial => "carts/form_cartitem", :locals => {:@cartitem => @cart_item}) %>")

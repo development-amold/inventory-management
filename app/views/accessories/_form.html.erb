@@ -1,0 +1,66 @@
+<%= form_with(model: accessory, local: true,:class => "form-horizontal") do |form| %>
+  <% if accessory.errors.any? %>
+    <%= render :partial => "layouts/model_message",:locals => {:modelObj => accessory} %>
+  <% end %>  
+  <div class="form-group">
+    <%= form.label :name,:class => "control-label col-sm-2" %>
+    <div class="col-sm-8">
+      <%= form.text_field :name,:class => "form-control" %>
+    </div>  
+  </div>
+  <div class="form-group">
+    <%= form.label :unit_price,:class => "control-label col-sm-2" %>
+    <div class="col-sm-8">
+      <%= form.text_field :unit_price,:class => "form-control",:placeholder => "Price must be less than 999999.99" %>
+    </div>  
+  </div>      
+  <div class="form-group">
+    <div class="control-label col-sm-2">
+      <label><input type="radio" name="acc_cat_type" value="pick" <%= !accessory.pick_id.blank? ? "checked": "" %>  >&nbsp;Select Pick</label>
+    </div>
+    <div class="col-sm-8" id="div_pick" style="<%= accessory.pick_id.blank? ? 'display: none' : "" %>">
+      <%= form.select :pick_id,Pick.all.collect {|p|[p.name,p.id]},{:include_blank => "Select Pick"},:class => "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">  
+    <div class="control-label col-sm-2">
+      <label><input type="radio" name="acc_cat_type" value="strap" <%= !accessory.strap_id.blank? ? "checked": "" %>>&nbsp;Select Strap</label>
+    </div>  
+    <div class="col-sm-8" id="div_strap" style="<%= accessory.strap_id.blank? ? 'display: none' : "" %>">
+      <%= form.select :strap_id,Strap.all.collect {|s|[s.name,s.id]},{:include_blank => "Select Strap"},:class => "form-control" %>
+    </div>      
+  </div>  
+
+  <div class="form-group">
+    <%= form.label :brand_id,:class => "control-label col-sm-2" %>
+    <div class="col-sm-8">
+      <%= form.select :brand_id,Brand.all.collect {|b|[b.name,b.id]},{:prompt => "Select Brand"},:class => "form-control" %>
+    </div>  
+  </div>
+  <div class="form-group">
+    <%= form.label :purchased_at,:class => "control-label col-sm-2" %>
+    <div class="col-sm-8">
+      <%= form.date_select :purchased_at,{},:class => "form-control" %>
+    </div>  
+  </div>   
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= form.submit "Submit",:class => "btn btn-primary" %>
+    </div>  
+  </div>
+<% end %>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('input[name="acc_cat_type"]').change(function(){
+      if ($(this).val() == "pick"){
+        $("#div_pick").css("display","");$("#div_strap").css("display","none");
+        $("#accessory_strap_id").val("");
+      }
+      else
+      {
+        $("#div_pick").css("display","none");$("#div_strap").css("display","")    
+        $("#accessory_pick_id").val("");
+      }
+    });
+  });
+</script>

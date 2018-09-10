@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cart: one
+  guitar: one
+  accessory: one
+  quantity: 1
+  unit_price: 9.99
+  sub_total: 9.99
+
+two:
+  cart: two
+  guitar: two
+  accessory: two
+  quantity: 1
+  unit_price: 9.99
+  sub_total: 9.99

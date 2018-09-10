@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Inventory Management</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>      
+  </head>
+  <body>
+    <div id="wrapper">
+      <% if admin_signed_in? %>
+        <div class="overlay"></div>
+        <%= render "layouts/sidebar" %>
+        <div id="page-content-wrapper">
+          <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
+            <span class="hamb-top"></span>
+            <span class="hamb-middle"></span>
+            <span class="hamb-bottom"></span>
+          </button>
+          <div class="container">
+            <div class="content">
+              <div class="block">
+                <div class="page-header" id="btn_cart">
+                  <%= render :partial => "carts/carts_items_count",:locals => {:msg => ""} %>
+                </div>
+                <%= yield %>
+              </div>
+            </div>  
+          </div>
+        </div>
+      <% else %>
+        <%= yield %>
+      <% end %>  
+    </div>
+  </body>
+</html>

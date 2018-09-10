@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @pick.name %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @pick.category.name %>
+</p>
+
+<%= link_to 'Edit', edit_pick_path(@pick),:class => "btn btn-primary"  %> |
+<%= link_to 'Back', picks_path,:class => "btn btn-primary"  %>

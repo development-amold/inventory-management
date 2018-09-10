@@ -1,0 +1,18 @@
+<% if @msg == "success" %>
+	<% @msg = "Item has been added to your cart" %> 
+	$('#btn_cart').html("<%= escape_javascript render(:partial => "carts/carts_items_count", :locals => {:msg => @msg}) %>");
+<% elsif @msg == "deleted" %>
+	<% @msg = "Item has been removed from your cart" %> 
+	$('#btn_cart').html("<%= escape_javascript render(:partial => "carts/carts_items_count", :locals => {:msg => @msg}) %>");
+	$("#cart_items_table").html("<%= escape_javascript render(:partial => "carts/cart_items", :locals => {:@cart => current_cart}) %>");
+<% elsif @msg == "updated" %>
+	<% @msg = "" %> 
+	$("#cart_items_table").html("<%= escape_javascript render(:partial => "carts/cart_items", :locals => {:@cart => current_cart}) %>");	
+<% elsif @msg == "updated_err" %>
+	<% @msg = "Quantity should be greater than 0" %> 
+	$("#cart_items_table").html("<%= escape_javascript render(:partial => "carts/cart_items", :locals => {:@cart => current_cart}) %>");
+<% else %>
+	<% @msg = "Invalid product" %>
+	$('#cart_notice').html(@msg);
+<% end %>
+$("#cart_notice").fadeOut(5000);

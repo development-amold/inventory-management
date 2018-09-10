@@ -1,0 +1,6 @@
+<%= form_tag "cart_item/#{@cart_item.id}",:method => :put,:remote => true do %>
+	<%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
+	<%= number_field_tag :quantity,@cart_item.quantity,:autofocus => true, :class => "form-control" %><br>
+	<%= submit_tag "Save",:class => "btn btn-sm btn-success" %>|
+	<%= button_tag "Cancel",:value => "cancel", :class => "btn btn-sm btn-primary" %>
+<% end %>

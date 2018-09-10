@@ -1,0 +1,15 @@
+<% if @status_msg == "invaliderror" %>
+	<% if params[:firstname].blank? %>
+		<% @msg = "First Name can't be blank"	%>
+	<% elsif params[:lastname].blank? %>
+		<% @msg = "Last Name can't be blank"	%>
+	<% elsif params[:email].blank?  %>
+		<% @msg = "Email can't be blank" %>
+	<% end %>
+	$("#div_place_order_notice").html("<%= @msg %>");
+<% elsif @status_msg == "invalidkey" %>
+	<% @msg = "Invalid request found"  %>
+<% elsif @status_msg == "success" %>
+	<% @msg = "Order has been placed successfully"%> 
+	window.location.href="/order_history";
+<% end %>

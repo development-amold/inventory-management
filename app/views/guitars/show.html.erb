@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-sm-12 text-right">
+    <%= link_to 'Add to Cart', add_to_cart_path("guitar",@guitar.id),{:method => :post, :remote => true }%> |
+    <%= link_to 'Add Accessories to Cart', accessories_path,:target => "_blank" %>    
+  </div>
+</div>
+<p>
+  <strong>Name:</strong>
+  <%= @guitar.name %>
+</p>
+<p>
+  <strong>Brand:</strong>
+  <%= @guitar.brand.name %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @guitar.category.name %>
+</p>
+
+<p>
+  <strong>Unit price:</strong>
+  &cent;<%= @guitar.unit_price %>
+</p>
+
+<p>
+  <strong>Number of Strings:</strong>
+  <%= @guitar.stringscount %>
+</p>
+
+<p>
+  <strong>Purchased at:</strong>
+  <%= @guitar.purchased_at.strftime("%B %d, %Y") %>
+</p>
+
+<%= link_to 'Edit', edit_guitar_path(@guitar),:class => "btn btn-primary" %> |
+<%= link_to 'Back', guitars_path ,:class => "btn btn-primary"%>

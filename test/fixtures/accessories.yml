@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pick: one
+  strap: one
+  brand: one
+  name: MyString
+  unit_price: 9.99
+
+two:
+  pick: two
+  strap: two
+  brand: two
+  name: MyString
+  unit_price: 9.99

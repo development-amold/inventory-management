@@ -3,7 +3,7 @@ class HomeController < ApplicationController
   end
 
   def order_history
-  	@users = User.joins(orders: :order_items).order("orders.created_at desc").uniq.paginate(:page => params[:page],:per_page => 5)
+  	@users = User.joins(orders: :order_items).order("orders.created_at desc").paginate(:page => params[:page],:per_page => 5)
   end
 
   def track_product

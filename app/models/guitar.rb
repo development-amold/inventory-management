@@ -6,6 +6,7 @@ class Guitar < ApplicationRecord
 	belongs_to :brand
 	belongs_to :category
 	has_many :cart_items,:dependent => :destroy
+	has_many :order_items,:dependent => :destroy
 
   def usn
   	"GUI-#{self.id}"

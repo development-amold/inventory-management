@@ -16,5 +16,6 @@ class Accessory < ApplicationRecord
 	belongs_to :strap, optional: true
 	belongs_to :brand
 	has_many :cart_items,:dependent => :destroy
+	has_many :order_items,:dependent => :destroy
   
 end

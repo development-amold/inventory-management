@@ -35,7 +35,7 @@
                 <td><%= link_to 'Add to Cart', add_to_cart_path("guitar",guitar.id),{:method => :post, :remote => true }%></td>
                 <td><%= link_to 'Show', guitar %></td>
                 <td><%= link_to 'Edit', edit_guitar_path(guitar) %></td>
-                <td><%= link_to 'Destroy', guitar, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <td><%= link_to 'Destroy', guitar, method: :delete, data: { confirm: 'Are you sure you want to delete the record?' } %></td>
               </tr>
             <% end %>
           </tbody>

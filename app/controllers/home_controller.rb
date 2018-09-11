@@ -1,6 +1,4 @@
 class HomeController < ApplicationController
-  def dashboard
-  end
 
   def order_history
   	require "will_paginate/array"

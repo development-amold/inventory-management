@@ -17,7 +17,7 @@ class OrderItem < ApplicationRecord
 
   def purchased_at
     if !self.guitar_id.blank?
-      return self.guitar.purchased_at.strftime("%B %d, %Y") unless self.guita.purchased_at.blank?
+      return self.guitar.purchased_at.strftime("%B %d, %Y") unless self.guitar.purchased_at.blank?
     elsif !self.accessory_id.blank?
       return self.accessory.purchased_at.strftime("%B %d, %Y") unless self.accessory.purchased_at.blank?
     else  

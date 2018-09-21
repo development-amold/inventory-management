@@ -10,6 +10,9 @@
   <body>
     <div id="wrapper">
       <% if admin_signed_in? %>
+        <p>
+          <%= flash[:alert]%>
+        </p>
         <div class="overlay"></div>
         <%= render "layouts/sidebar" %>
         <div id="page-content-wrapper">

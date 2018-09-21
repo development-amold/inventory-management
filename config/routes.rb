@@ -17,6 +17,6 @@ Rails.application.routes.draw do
   get "edit_cartitem" => "carts#edit_cartitem"
   get "place_order" => "carts#place_order"
   post "place_order" => "carts#create_order"
-  
+  get "test1" => "tests#index1"
 
 end

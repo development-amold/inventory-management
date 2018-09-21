@@ -15,6 +15,7 @@ class GuitarsController < ApplicationController
   # GET /guitars/new
   def new
     @guitar = Guitar.new
+    authorize @guitar
   end
 
   # GET /guitars/1/edit
